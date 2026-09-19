@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Report - Labham Sharma (12301046)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+    
+    :root {
+      --primary: #2563eb;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      margin: 0;
+      padding: 40px 20px;
+    }
+    
+    .report-container {
+      max-width: 850px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 50px 60px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+    }
+    
+    .header-box {
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 24px;
+      margin-bottom: 30px;
+    }
+    
+    h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 0 0 10px 0;
+      letter-spacing: -0.02em;
+    }
+    
+    .sub-title {
+      font-size: 16px;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+    
+    .candidate-card {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 25px;
+    }
+    
+    .candidate-card div span {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    
+    .candidate-card div strong {
+      font-size: 16px;
+      color: #1e3a8a;
+    }
+    
+    .links-card {
+      background: #f1f5f9;
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin-bottom: 35px;
+      border: 1px solid #cbd5e1;
+    }
+    
+    .links-card h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #334155;
+    }
+    
+    .link-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    
+    .link-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .link-item strong {
+      width: 170px;
+      color: #475569;
+    }
+    
+    .link-item a {
+      color: var(--primary);
+      text-decoration: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      word-break: break-all;
+    }
+    
+    .link-item a:hover {
+      text-decoration: underline;
+    }
+    
+    h2 {
+      font-size: 19px;
+      color: #0f172a;
+      margin-top: 36px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+    
+    p {
+      margin: 0 0 14px 0;
+      color: #334155;
+      font-size: 14.5px;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13.5px;
+    }
+    
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 10px 14px;
+      text-align: left;
+    }
+    
+    th {
+      background: #f8fafc;
+      color: #1e293b;
+      font-weight: 600;
+    }
+    
+    ul {
+      margin: 10px 0 20px 20px;
+      padding: 0;
+      font-size: 14px;
+      color: #334155;
+    }
+    
+    li {
+      margin-bottom: 6px;
+    }
+    
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #0f172a;
+    }
+    
+    .download-bar {
+      position: sticky;
+      top: 20px;
+      max-width: 850px;
+      margin: 0 auto 20px auto;
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+    
+    .btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+    }
+    
+    .btn:hover {
+      background: #1d4ed8;
+    }
+    
+    .btn-secondary {
+      background: #475569;
+    }
+    .btn-secondary:hover {
+      background: #334155;
+    }
+    
+    @media print {
+      body {
+        padding: 0;
+        background: #fff;
+      }
+      .report-container {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+      }
+      .download-bar {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="download-bar">
+    <button class="btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+    <a href="https://github.com/labhamsharma1633/DocExtractor/raw/main/PROJECT_REPORT.md" class="btn btn-secondary" download>📥 Download Markdown (.md)</a>
+  </div>
+
+  <div class="report-container">
+    <div class="header-box">
+      <h1>PROJECT SUBMISSION REPORT</h1>
+      <div class="sub-title">DocExtractor — Universal Layout-Agnostic Question & Diagram Extraction Engine</div>
+    </div>
+
+    <div class="candidate-card">
+      <div>
+        <span>Candidate Name</span>
+        <strong>Labham Sharma</strong>
+      </div>
+      <div>
+        <span>Registration Number</span>
+        <strong>12301046</strong>
+      </div>
+      <div>
+        <span>Submission Date</span>
+        <strong>September 20, 2026</strong>
+      </div>
+    </div>
+
+    <div class="links-card">
+      <h3>🔗 Project Links</h3>
+      <div class="link-item">
+        <strong>Live Web Application:</strong>
+        <a href="https://docextractor-iv9b.onrender.com/" target="_blank">https://docextractor-iv9b.onrender.com/</a>
+      </div>
+      <div class="link-item">
+        <strong>Video Demonstration:</strong>
+        <a href="https://youtu.be/lAebZnGRl44" target="_blank">https://youtu.be/lAebZnGRl44</a>
+      </div>
+      <div class="link-item">
+        <strong>GitHub Repository:</strong>
+        <a href="https://github.com/labhamsharma1633/DocExtractor" target="_blank">https://github.com/labhamsharma1633/DocExtractor</a>
+      </div>
+      <div class="link-item">
+        <strong>Interactive API Docs:</strong>
+        <a href="https://docextractor-iv9b.onrender.com/docs" target="_blank">https://docextractor-iv9b.onrender.com/docs</a>
+      </div>
+    </div>
+
+    <h2>1. Executive Summary</h2>
+    <p>
+      <strong>DocExtractor</strong> is an automated, layout-agnostic document processing and question extraction platform. It converts complex digital PDFs, scanned documents, and image-based exam papers into structured, high-accuracy question datasets.
+    </p>
+    <p>
+      Traditional PDF text extractors fail on competitive exam papers (such as NEET, JEE, GATE, and UPSC) due to multi-column text interleaving, missing vector/raster diagrams, and false positives from front-page test instructions and candidate forms. DocExtractor solves these core challenges through a <strong>10-Stage Spatial Pipeline</strong>, an intelligent <strong>Negative Region Classifier</strong>, a <strong>Spatial Layout Visual Extractor</strong>, and <strong>Google Gemini 1.5 Flash AI fallback</strong>.
+    </p>
+
+    <h2>2. Core Problems Addressed & Solutions</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Challenge in Real-World PDFs</th>
+          <th>Legacy Extractor Flaw</th>
+          <th>DocExtractor Universal Solution</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Two-Column / Multi-Column Layouts</strong></td>
+          <td>Reads across the page horizontally, merging lines from Column 1 into Column 2.</td>
+          <td><strong>Spatial Column Slicing</strong>: Identifies page midline geometry (<code>mid_x</code>) and reads left-column blocks sequentially before right-column blocks.</td>
+        </tr>
+        <tr>
+          <td><strong>Exam Instructions & Candidate Forms</strong></td>
+          <td>"Darken bubbles...", "Duration 180 min...", and signature lines get captured as fake questions.</td>
+          <td><strong>Negative Region Classifier</strong>: Classifies text against instruction triggers, candidate field metadata, and imperative commands with <strong>zero false positives</strong>.</td>
+        </tr>
+        <tr>
+          <td><strong>Embedded Scientific Diagrams & Figures</strong></td>
+          <td>Diagrams are either discarded or replaced with page logos/watermarks.</td>
+          <td><strong>Spatial Visual Extractor</strong>: Isolates background watermarks (320×320) and footer logos, identifies the question's column bounding box, and crops raster/vector diagrams at high DPI.</td>
+        </tr>
+        <tr>
+          <td><strong>Horizontal Single-Line Options</strong></td>
+          <td>Options like <code>(1) 10 N (2) 20 N (3) 30 N (4) Zero</code> get merged into a single text blob.</td>
+          <td><strong>Horizontal Option Parser</strong>: Extracts multi-option lines into distinct <code>(1)</code>, <code>(2)</code>, <code>(3)</code>, <code>(4)</code> or <code>(A)</code>, <code>(B)</code>, <code>(C)</code>, <code>(D)</code> records.</td>
+        </tr>
+        <tr>
+          <td><strong>Scanned & Noisy Formats</strong></td>
+          <td>Character degradation causes deterministic regex parsers to break.</td>
+          <td><strong>Hybrid Architecture</strong>: Tesseract OCR for text recovery + <strong>Google Gemini 1.5 Flash</strong> fallback with strict Pydantic JSON schema validation.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>3. System Architecture & 10-Stage Pipeline</h2>
+    <ul>
+      <li><strong>Stage 1: Ingestion & Storage</strong> — Validates MIME type and stores binary assets securely.</li>
+      <li><strong>Stage 2: Spatial Block & Layout Reading</strong> — Analyzes page geometry and preserves column reading orders.</li>
+      <li><strong>Stage 3: Negative Region Filtering</strong> — Discards exam rules, OMR instructions, and candidate signature fields.</li>
+      <li><strong>Stage 4: Multi-Signal Question Anchor Normalizer</strong> — Unifies standalone question numbers (Q1, Q17) with question bodies.</li>
+      <li><strong>Stage 5: Horizontal & Vertical Option Parser</strong> — Extracts options across single or multiple lines.</li>
+      <li><strong>Stage 6: Spatial Diagram & Image Extractor</strong> — Crops vector drawings and extracts raster figures attached to questions.</li>
+      <li><strong>Stage 7: Answer Key Isolation & Resolution</strong> — Separates answer key sections and matches keys to questions.</li>
+      <li><strong>Stage 8: Multi-Page Continuation & Stitching</strong> — Connects questions spanning page boundaries.</li>
+      <li><strong>Stage 9: Empirical Confidence Evaluation</strong> — Multi-evidence scoring (0%–100%) generating human review alerts.</li>
+      <li><strong>Stage 10: Persistence & UI Render</strong> — Saves to database and presents cards on dashboard.</li>
+    </ul>
+
+    <h2>4. Verification & Experimental Results</h2>
+    <p>
+      The platform was rigorously evaluated on an authentic 24-page competitive exam paper (<em>Practice Test 02 Test Paper Yakeen 2.0 NEET</em>):
+    </p>
+    <ul>
+      <li><strong>Total Pages Processed</strong>: 24 Pages</li>
+      <li><strong>Total Questions Extracted</strong>: <strong>196 Questions</strong> (Covering Q1 through Q180 cleanly)</li>
+      <li><strong>Overall Extraction Confidence</strong>: <strong>87%</strong> (<code>COMPLETED</code> status)</li>
+      <li><strong>Instruction Filtering Accuracy</strong>: <strong>100%</strong> (Zero instruction false positives)</li>
+      <li><strong>Diagrams Extracted & Linked</strong>:
+        <ul>
+          <li><strong>Q14</strong>: Figure comparison diagram (<code>crop_q_14_p3.png</code>)</li>
+          <li><strong>Q17</strong>: Vector angle diagram (<code>q_17_p3_392.png</code>)</li>
+          <li><strong>Q21</strong>: Vector resultant force diagram (<code>q_21_p4_399.png</code>)</li>
+          <li><strong>Q30</strong>: Vector orientation diagram (<code>q_30_p5_402.png</code>)</li>
+          <li><strong>Q43</strong>: Vector combination diagram (<code>q_43_p6_411.png</code>)</li>
+          <li><strong>Q172</strong>: Adipose tissue biological diagram (<code>q_172_p22_475.png</code>)</li>
+        </ul>
+      </li>
+      <li><strong>Automated Test Suite</strong>: 29 unit tests passing (<code>pytest tests/unit -v</code>).</li>
+    </ul>
+
+    <h2>5. Technology Stack</h2>
+    <ul>
+      <li><strong>Backend</strong>: Python 3.11, FastAPI, Uvicorn, Pydantic v2, SQLAlchemy ORM</li>
+      <li><strong>Document Processing & OCR</strong>: PyMuPDF (Fitz), PyPDF, Pillow, Tesseract OCR</li>
+      <li><strong>AI & LLM</strong>: Google Gemini 1.5 Flash API (Structured JSON Schema)</li>
+      <li><strong>Database & Storage</strong>: SQLite (Development) / PostgreSQL (Production), Local file storage</li>
+      <li><strong>Frontend</strong>: HTML5, Vanilla CSS3 (Dark Mode / Glassmorphism), Modern JavaScript</li>
+      <li><strong>DevOps & Deployment</strong>: Docker, Docker Compose, Render Cloud Web Service, Git & GitHub</li>
+    </ul>
+  </div>
+
+</body>
+</html>
