@@ -1,6 +1,12 @@
-# Scalable Document Processing & Question Extraction Service
+# DocExtractor — Universal Document Question & Diagram Extraction Service
 
-A production-oriented, asynchronous backend service built with **FastAPI**, **PostgreSQL**, **Redis**, **Celery**, **PyMuPDF**, and **Tesseract OCR** to ingest heterogeneous examination materials and convert them into structured, validated, machine-readable questions.
+### 👤 Project Information
+* **Student Name**: Labham Sharma
+* **Registration Number**: 12301046
+* 🌐 **Live Web Application**: [https://docextractor-iv9b.onrender.com/](https://docextractor-iv9b.onrender.com/)
+* 🎥 **Video Demonstration**: [https://youtu.be/lAebZnGRl44](https://youtu.be/lAebZnGRl44)
+* 💻 **GitHub Repository**: [https://github.com/labhamsharma1633/DocExtractor](https://github.com/labhamsharma1633/DocExtractor)
+* 📚 **API Docs (Swagger)**: [https://docextractor-iv9b.onrender.com/docs](https://docextractor-iv9b.onrender.com/docs)
 
 ---
 
