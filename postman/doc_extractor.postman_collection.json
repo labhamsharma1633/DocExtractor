@@ -1,0 +1,315 @@
+{
+  "info": {
+    "name": "Document Question Extraction Service",
+    "_postman_id": "88bd3ab8-4309-435a-a27d-791f31417984",
+    "description": "Comprehensive Postman API collection for the Document Processing & Question Extraction Service.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"evaluator@example.com\",\n  \"password\": \"Password123!\",\n  \"full_name\": \"Assignment Evaluator\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.access_token) {",
+                  "    pm.environment.set(\"token\", jsonData.access_token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"evaluator@example.com\",\n  \"password\": \"Password123!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Current User Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/me",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "auth", "me"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Document Management",
+      "item": [
+        {
+          "name": "Upload Document (PDF / Image)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.document_id) {",
+                  "    pm.environment.set(\"document_id\", jsonData.document_id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "samples/clean_digital.pdf"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/documents",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "documents"]
+            }
+          }
+        },
+        {
+          "name": "List User Documents",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/documents",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "documents"]
+            }
+          }
+        },
+        {
+          "name": "Get Document Status & Metrics",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/documents/{{document_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "documents", "{{document_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Document Normalized Pages",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/documents/{{document_id}}/pages",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "documents", "{{document_id}}", "pages"]
+            }
+          }
+        },
+        {
+          "name": "Reprocess Document Pipeline",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/documents/{{document_id}}/reprocess",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "documents", "{{document_id}}", "reprocess"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Questions & Extraction",
+      "item": [
+        {
+          "name": "Get Extracted Questions",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.items && jsonData.items.length > 0) {",
+                  "    pm.environment.set(\"question_id\", jsonData.items[0].id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/documents/{{document_id}}/questions",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "documents", "{{document_id}}", "questions"]
+            }
+          }
+        },
+        {
+          "name": "Get Single Question Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/questions/{{question_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "questions", "{{question_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Update / Human Correct Question",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question_text\": \"Corrected question statement by evaluator.\",\n  \"matched_answer\": \"B\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/questions/{{question_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "questions", "{{question_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Answers & Relationships",
+      "item": [
+        {
+          "name": "Get Document Answers",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/documents/{{document_id}}/answers",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "documents", "{{document_id}}", "answers"]
+            }
+          }
+        },
+        {
+          "name": "Create Document Relationship",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"related_document_id\": \"{{document_id}}\",\n  \"relationship_type\": \"ANSWER_KEY\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/documents/{{document_id}}/relationships",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "documents", "{{document_id}}", "relationships"]
+            }
+          }
+        },
+        {
+          "name": "Get Document Relationships",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/documents/{{document_id}}/relationships",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "documents", "{{document_id}}", "relationships"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Quality & Review Items",
+      "item": [
+        {
+          "name": "Get Document Review Items",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/documents/{{document_id}}/review-items",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "documents", "{{document_id}}", "review-items"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
