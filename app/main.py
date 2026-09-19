@@ -78,7 +78,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     )
 
 
-@app.get("/health", tags=["Health"])
+@app.api_route("/health", methods=["GET", "HEAD"], tags=["Health"])
 async def health_check():
     """Health check endpoint to verify system availability."""
     return {
@@ -106,7 +106,7 @@ if os.path.exists("static"):
     app.mount("/dashboard", StaticFiles(directory="static", html=True), name="static")
 
 
-@app.get("/", tags=["UI"])
+@app.api_route("/", methods=["GET", "HEAD"], tags=["UI"])
 async def root():
     """Redirect root path to interactive visual dashboard."""
     if os.path.exists("static/index.html"):

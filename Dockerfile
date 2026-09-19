@@ -28,6 +28,7 @@ COPY . .
 # Create data storage directories
 RUN mkdir -p data/uploads data/page_images
 
+ENV PORT=8000
 EXPOSE 8000
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
